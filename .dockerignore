@@ -1,0 +1,9 @@
+.git
+.github
+_site
+.sass-cache
+node_modules
+images
+.devcontainer
+.vscode
+*.ipynb
