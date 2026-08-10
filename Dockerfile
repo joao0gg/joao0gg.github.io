@@ -1,11 +1,14 @@
+# syntax=docker/dockerfile:1
+
 # Base image: Ruby with necessary dependencies for Jekyll
 FROM ruby:3.2
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get install -y \
     build-essential \
-    nodejs \
-    && rm -rf /var/lib/apt/lists/*
+    nodejs
 
 
 # Create a non-root user with UID 1000
