@@ -7,7 +7,9 @@ Personal website, built with [Jekyll](https://jekyllrb.com) and the
 
 **Codespaces:** open a codespace and run
 
-    bundle exec jekyll serve --config _config.yml,_config_dev.yml
+```shell
+bundle exec jekyll serve --config _config.yml,_config_dev.yml
+```
 
 **Docker:** `docker compose up`, then open http://localhost:4000.
 
