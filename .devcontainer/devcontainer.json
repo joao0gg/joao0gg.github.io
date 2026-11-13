@@ -1,15 +1,16 @@
 {
-    "name": "ACADEMIC PAGES",
-    "dockerComposeFile": "../docker-compose.yaml",
-    "service": "jekyll-site",
-    "remoteEnv": {
-        "VSCODE_SERVER_DIR": "/home/vscode/.vscode-server"
-    },
-    "runArgs": [
-        "--user",
-        "1000:1000"
-    ],
-    "workspaceFolder": "/usr/src/app",
-    "remoteUser": "vscode",
-    "forwardPorts": [4000] // Add port forwarding
+  "name": "Blog",
+  "image": "mcr.microsoft.com/devcontainers/ruby:3.2",
+  "postCreateCommand": "bundle install",
+  "remoteEnv": { "JEKYLL_ENV": "docker" },
+  "forwardPorts": [4000],
+  "portsAttributes": {
+    "4000": { "label": "Blog", "onAutoForward": "openBrowser" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["-shopify.ruby-lsp"],
+      "settings": { "chat.disableAIFeatures": true }
+    }
+  }
 }

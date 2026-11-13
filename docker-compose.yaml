@@ -1,9 +1,12 @@
 services:
-  jekyll-site:
-    image: jekyll-site
-    build: .
-    volumes: [ .:/usr/src/app ]
-    ports: [ 4000:4000 ]
-    user: 1000:1000
-    environment: [ JEKYLL_ENV=docker ]
-    command: sh -c "bundle check || bundle install; exec jekyll serve -H 0.0.0.0 -w --config _config.yml,_config_docker.yml"
+  blog:
+    image: ruby:3.2
+    working_dir: /site
+    user: "1000:1000"
+    environment:
+      HOME: /tmp
+      BUNDLE_PATH: /site/vendor/bundle
+      JEKYLL_ENV: docker
+    volumes: [".:/site"]
+    ports: ["4000:4000"]
+    command: sh -c "bundle install && bundle exec jekyll serve --host 0.0.0.0 --config _config.yml,_config_dev.yml"
